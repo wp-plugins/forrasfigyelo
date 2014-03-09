@@ -1,4 +1,4 @@
-=== WordPress Megosztás ===
+=== Forrásfigyelő CSR ===
 Contributors: vbliszko
 Tags: palyazat, pályázat, hír, hir, hírek, hirek
 Requires at least: 3.8
