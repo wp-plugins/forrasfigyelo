@@ -1,4 +1,4 @@
-=== Forrásfigyelő CSR ===
+=== Forrásfigyelő CSR - pályázati hírek ===
 Contributors: vbliszko
 Tags: pályázat, palyazat, hír, hir, hírek, hirek
 Requires at least: 3.4

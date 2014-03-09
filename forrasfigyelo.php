@@ -3,8 +3,8 @@
  * @package forrasfigyelo
  */
 /*
-Plugin Name: Forrásfigyelő CSR
-Plugin URI: http://forrasfigyelo.hu/?page=letoltesek
+Plugin Name: Forrásfigyelő CSR - pályázati hírek
+Plugin URI: http://wordpress.org/plugins/forrasfigyelo/
 Version: 1.0
 Description: Tartalom-érzékeny, automatikusan frissülő ajánlások a <strong>forrásfigyelő.hu</strong> pályázati híreiből. A pályázatok az Ön weboldalának tartalmához illeszkedve jelennek meg, így Ön célzott pályázatokat tud ajánlani látogatóinak.
 Author: e-presence, Bliszkó Viktor
@@ -86,7 +86,7 @@ class forrasfigyelo_widget extends WP_Widget {
 
 		echo "<p>";
 		echo "<label for=\"" , $this->get_field_id('ff_type'), "\">Tartalom: </label>";
-	    echo "<select name=\"", $this->get_field_name('ff_type'), "\" id=\"", $this->get_field_id('ff_type'), "\" class=\"widefat\" style=\"width:auto\">";
+		echo "<select name=\"", $this->get_field_name('ff_type'), "\" id=\"", $this->get_field_id('ff_type'), "\" class=\"widefat\" style=\"width:auto\">";
 		echo "<option value=\"" . self::FF_TYPE_AJANLAS . "\"";
 		if (esc_attr($ff_type) == self::FF_TYPE_AJANLAS) {
 			echo " selected=\"selected\"";
@@ -105,7 +105,7 @@ class forrasfigyelo_widget extends WP_Widget {
 		}
 		echo ">Mindkettő</option>";
 
-	    echo "</select>";
+		echo "</select>";
 		echo "</p>";
 
 		echo "<p>";
