@@ -1,7 +1,7 @@
 === Forrásfigyelő CSR ===
 Contributors: vbliszko
-Tags: palyazat, pályázat, hír, hir, hírek, hirek
-Requires at least: 3.8
+Tags: pályázat, palyazat, hír, hir, hírek, hirek
+Requires at least: 3.4
 Tested up to: 3.8
 Stable tag: 1.0
 
