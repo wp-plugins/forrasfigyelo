@@ -3,7 +3,7 @@ Contributors: vbliszko
 Tags: pályázat, palyazat, hír, hir, hírek, hirek
 Requires at least: 3.4
 Tested up to: 3.8
-Stable tag: 1.0
+Stable tag: 1.1
 
 Tartalom-érzékeny, automatikusan frissülő ajánlások a forrásfigyelő.hu pályázati híreiből.
 
@@ -29,7 +29,13 @@ Tartalom-érzékeny, automatikusan frissülő ajánlások a forrásfigyelő.hu p
 
 == Changelog ==
 
+= 1.1 =
+* Teljes szélesség opció
+
 = 1.0 =
 * Elkészült a Forrásfigyelő CSR bővítmény kiadásra szánt változata!
 
 == Upgrade Notice ==
+
+= 1.1 = 
+* Teljes szélesség is megadható számérték helyett

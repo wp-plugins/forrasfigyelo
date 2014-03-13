@@ -1,11 +1,11 @@
 <?php
 /**
- * @package forrasfigyelo
- */
+* @package forrasfigyelo
+*/
 /*
 Plugin Name: Forrásfigyelő CSR - pályázati hírek
 Plugin URI: http://wordpress.org/plugins/forrasfigyelo/
-Version: 1.0
+Version: 1.1
 Description: Tartalom-érzékeny, automatikusan frissülő ajánlások a <strong>forrásfigyelő.hu</strong> pályázati híreiből. A pályázatok az Ön weboldalának tartalmához illeszkedve jelennek meg, így Ön célzott pályázatokat tud ajánlani látogatóinak.
 Author: e-presence, Bliszkó Viktor
 Author URI: http://www.e-presence.hu
@@ -17,6 +17,7 @@ class forrasfigyelo_widget extends WP_Widget {
 	const FF_TYPE_AJANLAS = 2;
 	const FF_TYPE_MINDKETTO = 3;
 	const FF_WIDTH_MIN = 152;
+	const FF_WIDTH_MAX = false;
 	const FF_HEIGHT_KERESES = 117;
 	const FF_HEIGHT_AJANLAS = 200;
 	const FF_HEIGHT_MINDKETTO = 200;
@@ -24,6 +25,7 @@ class forrasfigyelo_widget extends WP_Widget {
 	private $default_type;
 	private $default_width;
 	private $default_height;
+	private $default_width_max;
 
 	public function __construct() {
 		parent::__construct(
@@ -34,6 +36,7 @@ class forrasfigyelo_widget extends WP_Widget {
 		$this->default_type = self::FF_TYPE_AJANLAS;
 		$this->default_width = self::FF_WIDTH_MIN;
 		$this->default_height = self::FF_HEIGHT_AJANLAS;
+		$this->default_width_max = self::FF_WIDTH_MAX;
 	}
 
 	private function filter_type($type) {
@@ -52,6 +55,11 @@ class forrasfigyelo_widget extends WP_Widget {
 		return $width;
 	}
 
+	private function filter_width_max($width_max) {
+		$width_max = (boolean)$width_max;
+		return $width_max;
+	}
+
 	private function filter_height($height, $type) {
 		$height = (int)$height;
 		$default_height = array(
@@ -68,6 +76,10 @@ class forrasfigyelo_widget extends WP_Widget {
 
 		$ff_type = $this->filter_type($instance['ff_type']);
 		$ff_width = $this->filter_width($instance['ff_width']);
+		$ff_width_max = $this->filter_width_max($instance['ff_width_max']);
+		if ($ff_width_max) {
+			$ff_width = 'max';
+		}
 		$ff_height = $this->filter_height($instance['ff_height'], $ff_type);
 
 		echo $args['before_widget'];
@@ -82,7 +94,15 @@ class forrasfigyelo_widget extends WP_Widget {
 
 		$ff_type = $instance['ff_type'];
 		$ff_width = $instance['ff_width'];
+		$ff_width_max = $instance['ff_width_max'];
 		$ff_height = $instance['ff_height'];
+		$checked = '';
+		$disabled = '';
+		if ((boolean)$ff_width_max) {
+			$checked = ' checked="checked" ';
+			$disabled = ' disabled="disabled" ';
+			$ff_width = '100%';
+		}
 
 		echo "<p>";
 		echo "<label for=\"" , $this->get_field_id('ff_type'), "\">Tartalom: </label>";
@@ -110,7 +130,9 @@ class forrasfigyelo_widget extends WP_Widget {
 
 		echo "<p>";
 		echo "<label for=\"", $this->get_field_id('ff_width'), "\">Szélesség: </label>";
-		echo "<input class=\"widefat\" id=\"", $this->get_field_id('ff_width'), "\" name=\"", $this->get_field_name('ff_width'), "\" type=\"text\" value=\"", esc_attr($ff_width), "\" />";
+		echo "<input class=\"widefat\" id=\"", $this->get_field_id('ff_width'), "\" name=\"", $this->get_field_name('ff_width'), "\" type=\"text\" value=\"", esc_attr($ff_width), "\" $disabled />";
+		echo "<input id=\"", $this->get_field_id('ff_width_max'), "\" name=\"", $this->get_field_name('ff_width_max'), "\" value=\"1\" type=\"checkbox\" $checked onclick=\"document.getElementById('" . $this->get_field_id('ff_width') . "').disabled=this.checked\"/>&nbsp;";
+		echo "<label for=\"", $this->get_field_id('ff_width_max'), "\">teljes szélesség</label>";
 		echo "</p>";
 
 		echo "<p>";
@@ -118,7 +140,7 @@ class forrasfigyelo_widget extends WP_Widget {
 		echo "<input class=\"widefat\" id=\"", $this->get_field_id('ff_height'), "\" name=\"", $this->get_field_name('ff_height'), "\" type=\"text\" value=\"", esc_attr($ff_height), "\" />";
 		echo "</p>";
 
-		echo "<p>A widget külső hivatkozásokat használ, amihez a widget használatával hozzájárulok. <input type=\"checkbox\" checked=\"checked\" disabled=\"disabled\"></p>";
+		echo "<p><input type=\"checkbox\" checked=\"checked\" disabled=\"disabled\">&nbsp;A widget külső hivatkozásokat használ, amihez a widget használatával hozzájárulok.</p>";
 
 	}
 
@@ -138,6 +160,13 @@ class forrasfigyelo_widget extends WP_Widget {
 			$instance['ff_width'] = $new_instance['ff_width'];
 		}
 		$instance['ff_width'] = $this->filter_width($instance['ff_width']);
+
+		if (!isset($instance['ff_width_max'])) {
+			$instance['ff_width_max'] = $this->default_width_max;
+		} else {
+			$instance['ff_width_max'] = $new_instance['ff_width_max'];
+		}
+		$instance['ff_width_max'] = $this->filter_width_max($instance['ff_width_max']);
 
 		if (!isset($instance['ff_height'])) {
 			$instance['ff_height'] = $this->default_height;
