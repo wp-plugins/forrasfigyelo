@@ -5,7 +5,7 @@
 /*
 Plugin Name: Forrásfigyelő CSR - pályázati hírek
 Plugin URI: http://wordpress.org/plugins/forrasfigyelo/
-Version: 1.1.2
+Version: 1.1.3
 Description: Tartalom-érzékeny, automatikusan frissülő ajánlások a <strong>forrásfigyelő.hu</strong> pályázati híreiből. A pályázatok az Ön weboldalának tartalmához illeszkedve jelennek meg, így Ön célzott pályázatokat tud ajánlani látogatóinak.
 Author: e-presence, Bliszkó Viktor
 Author URI: http://www.e-presence.hu
@@ -185,5 +185,3 @@ function forrasfigyelo_load_widget() {
 }
 
 add_action('widgets_init', 'forrasfigyelo_load_widget');
-
-?>

@@ -2,8 +2,8 @@
 Contributors: vbliszko
 Tags: pályázat, palyazat, hír, hir, hírek, hirek
 Requires at least: 3.4
-Tested up to: 4.0
-Stable tag: 1.1.2
+Tested up to: 4.1
+Stable tag: 1.1.3
 
 Tartalom-érzékeny, automatikusan frissülő ajánlások a forrásfigyelő.hu pályázati híreiből.
 
@@ -29,6 +29,9 @@ Tartalom-érzékeny, automatikusan frissülő ajánlások a forrásfigyelő.hu p
 
 == Changelog ==
 
+= 1.1.3 = 
+* WP 4.1 kompatibilitás ellenőrzés
+
 = 1.1.2 = 
 * WP 4.0 kompatibilitás ellenőrzés
 
@@ -42,6 +45,9 @@ Tartalom-érzékeny, automatikusan frissülő ajánlások a forrásfigyelő.hu p
 * Elkészült a Forrásfigyelő CSR bővítmény kiadásra szánt változata!
 
 == Upgrade Notice ==
+
+= 1.1.3 = 
+* WP 4.1 kompatibilitás ellenőrzés
 
 = 1.1.2 = 
 * WP 4.0 kompatibilitás ellenőrzés
